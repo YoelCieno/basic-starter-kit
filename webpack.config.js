@@ -11,21 +11,10 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.(png|jpg|gif|html)$/,
-        use: [
-          {
-            enforce: 'pre',
-            test: /\.js$/,
-            use: 'source-map-loader'
-          },
-          {
-            loader: 'file-loader',
-            options: {
-              name: 'index.html'
-            }
-          }
-        ]
+      { 
+        enforce: 'pre',
+        test: /\.js$/,
+        use: 'source-map-loader'
       },    
       {
         test: /\.css$/,
@@ -39,7 +28,8 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              presets: ['babel-preset-env']
+              presets: ['babel-preset-env'],
+              sourceMap: true
             }
           }
         ]
