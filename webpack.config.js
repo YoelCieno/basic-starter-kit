@@ -15,6 +15,11 @@ module.exports = {
         test: /\.(png|jpg|gif|html)$/,
         use: [
           {
+            enforce: 'pre',
+            test: /\.js$/,
+            use: 'source-map-loader'
+          },
+          {
             loader: 'file-loader',
             options: {
               name: 'index.html'
@@ -29,12 +34,15 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /(node_modules)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['babel-preset-env']
+        use: [
+          'source-map-loader', 
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['babel-preset-env']
+            }
           }
-        }
+        ]
       }
     ]
   },
